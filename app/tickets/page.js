@@ -12,6 +12,7 @@ export default function Tickets(){
                     <p><small>Currently Open Tickets</small></p>
                 </div>
             </nav>
+
             <TicketsPage />
         </main>
     )
