@@ -1,7 +1,6 @@
-import Link from "next/link";
+export default function TicketDetails({params}){
 
-export default function TicketsPage() {
-
+    const id = params.id;
     const tickets = [
         {
             "id": "1",
@@ -25,22 +24,26 @@ export default function TicketsPage() {
             "user_email": "peach@netninja.dev"
         }
     ]
-    const another_tickets = [];
-    return (<>
-        {tickets.map(ticket => (
-
-            <div key={ticket.id} className="card my-5">
-                <Link href={`/tickets/${ticket.id}`}>
-                <h3>{ticket.title}</h3>
-                <p>{ticket.body.slice(0,200)}...</p>
-                <div className={`pill ${ticket.priority}`}>
-                    {ticket.priority} priority
-                </div>
-                </Link>
-             </div>
+    return (<div>
+            {tickets.filter(ticket => ticket.id === params.id).map(ticket => (
+                <main key={ticket.id}>
+                    <nav>
+                        <h2>Ticket Details</h2>
+                    </nav>
+                    <div className="card">
+                        <h3>{ticket.title}</h3>
+                        <small>Created by {ticket.user_email}</small>
+                        <p>{ticket.body}</p>
+                        <div className={`pill ${ticket.priority}`}>
+                            {ticket.priority} priority
+                        </div>
+                    </div>
+                </main>
             ))}
-        {another_tickets.length === 0 && (
-            <p className="text-center">No more additional tickets!</p>
-        ) }
-        </>)
+    </div>
+
+
+            )
+
+
 }
